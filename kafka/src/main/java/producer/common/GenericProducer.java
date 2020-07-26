@@ -32,6 +32,9 @@ public class GenericProducer {
     protected void send(String topic,String record){
         this.procuder.send(new ProducerRecord<String, String>(topic,record));
     }
+    protected void send(String topic,String key,String record){
+        this.procuder.send(new ProducerRecord<String, String>(topic,key,record));
+    }
 
     protected void close(){
         if(this.procuder != null){

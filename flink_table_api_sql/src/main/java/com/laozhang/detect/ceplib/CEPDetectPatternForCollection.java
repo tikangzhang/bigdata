@@ -73,15 +73,10 @@ public class CEPDetectPatternForCollection {
 			public boolean filter(Tuple3<String, Long, Integer> rawStateData) throws Exception {
 				return "ALarM".equals(rawStateData.f0);
 			}
-		}).followedBy("alarmHandle").oneOrMore().where(new SimpleCondition<Tuple3<String, Long, Integer>>() {
+		}).next("alarmHandle").times(1).where(new SimpleCondition<Tuple3<String, Long, Integer>>() {
 			@Override
 			public boolean filter(Tuple3<String, Long, Integer> rawStateData) throws Exception {
-				return "ALarM".equals(rawStateData.f0);
-			}
-		}).next("alarmHandle0").oneOrMore().where(new SimpleCondition<Tuple3<String, Long, Integer>>() {
-			@Override
-			public boolean filter(Tuple3<String, Long, Integer> rawStateData) throws Exception {
-				return !"ALarM".equals(rawStateData.f0) && "****(reset)".equals(rawStateData.f0);
+				return !"STaRT".equals(rawStateData.f0);
 			}
 		}).followedBy("alarmEnd").where(new SimpleCondition<Tuple3<String, Long, Integer>>() {
 			@Override
